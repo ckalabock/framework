@@ -1,0 +1,4 @@
+﻿[
+  {"id": 1, "full_name": "Петрова Анна Сергеевна", "department": "Отдел кадров", "is_available": true},
+  {"id": 2, "full_name": "Сидоров Максим Олегович", "department": "IT-отдел", "is_available": false}
+]
