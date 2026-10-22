@@ -73,6 +73,30 @@ python manage.py runserver
 
 Откройте `http://127.0.0.1:8000/login/`. После входа доступны интерфейс и API: `/api/visitors/` и `/api/visits/`.
 
+Демо-данные для проверки веб-версии:
+
+```powershell
+python manage.py seed_demo
+```
+
+Команда создаёт пользователя `demo` с паролем `DemoPass123!`, двух посетителей, доступного и недоступного сотрудников, действующий и просроченный пропуска, активное и отменённое посещения. Команду можно запускать повторно: дубликаты не создаются.
+
+## База данных
+
+Файл локальной SQLite-базы — `db.sqlite3` в корне проекта. Открыть его можно через SQLiteStudio или DB Browser for SQLite: выберите **Open Database** и укажите этот файл. Из консоли доступна Django Shell:
+
+```powershell
+python manage.py shell
+```
+
+```python
+from webapp.models import VisitorRecord, VisitRecord
+VisitorRecord.objects.all()
+VisitRecord.objects.select_related("visitor", "employee")
+```
+
+Файл `db.sqlite3` не публикуется в Git и создаётся командой `python manage.py migrate`.
+
 ## Тестирование и качество кода
 
 Установить инструменты разработки:

@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-<header><h1>Система учёта посетителей</h1><span>{{ user.username }}</span>
-    <form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Выйти</button></form>
+<header><h1>Система учёта посетителей</h1>
+    {% if user.is_authenticated %}<span class="user-name">{{ user.username }}</span>
+    <form class="logout-form" action="{% url 'logout' %}" method="post">{% csrf_token %}<button class="button button-secondary" type="submit">Выйти</button></form>{% endif %}
 </header>
 <main>{% block content %}{% endblock %}</main>
 </body>
