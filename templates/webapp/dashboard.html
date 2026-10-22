@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<nav><a href="{% url 'create_visitor' %}">Добавить посетителя</a><a href="{% url 'create_employee' %}">Добавить сотрудника</a><a href="{% url 'create_pass' %}">Выдать пропуск</a><a href="{% url 'create_visit' %}">Зарегистрировать посещение</a></nav>
+<section class="grid"><article class="card"><h2>Посетители</h2>{% for visitor in visitors %}<p>{{ visitor.full_name }} — {{ visitor.document }}</p>{% empty %}<p>Нет данных</p>{% endfor %}</article>
+<article class="card"><h2>Сотрудники</h2>{% for employee in employees %}<p>{{ employee.full_name }} — {% if employee.is_available %}доступен{% else %}недоступен{% endif %}</p>{% empty %}<p>Нет данных</p>{% endfor %}</article></section>
+<section class="card"><h2>Посещения</h2>{% for visit in visits %}<p>{{ visit }} <form class="inline" method="post" action="{% url 'cancel_visit' visit.id %}">{% csrf_token %}<button>Отменить</button></form></p>{% empty %}<p>Нет данных</p>{% endfor %}</section>
+{% endblock %}

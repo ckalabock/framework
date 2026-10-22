@@ -9,3 +9,8 @@ __pycache__/
 # Настройки среды разработки
 .vscode/
 .idea/
+
+# Django local files
+db.sqlite3
+*.pyc
+.pytest_cache/
