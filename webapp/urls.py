@@ -1,16 +1,19 @@
-"""URLs for HTML pages and JSON API."""
+"""Named routes for the visitor accounting application."""
 
 from django.urls import path
 
 from . import views
 
+
+app_name = "webapp"
+
 urlpatterns = [
-    path("", views.dashboard, name="dashboard"),
-    path("visitors/new/", views.create_visitor, name="create_visitor"),
-    path("employees/new/", views.create_employee, name="create_employee"),
-    path("passes/new/", views.create_pass, name="create_pass"),
-    path("visits/new/", views.create_visit, name="create_visit"),
-    path("visits/<int:visit_id>/cancel/", views.cancel_visit, name="cancel_visit"),
-    path("api/visitors/", views.visitors_api, name="visitors_api"),
-    path("api/visits/", views.visits_api, name="visits_api"),
+    path("", views.index, name="index"),
+    path("visitors/", views.visitor_list, name="visitor_list"),
+    path("visitors/<int:visitor_id>/", views.visitor_detail, name="visitor_detail"),
+    path("employees/", views.employee_list, name="employee_list"),
+    path("employees/<int:employee_id>/", views.employee_detail, name="employee_detail"),
+    path("passes/", views.pass_list, name="pass_list"),
+    path("visits/", views.visit_list, name="visit_list"),
+    path("visits/<int:visit_id>/", views.visit_detail, name="visit_detail"),
 ]

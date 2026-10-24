@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block title %}Пропуска{% endblock %}{% block content %}<h1>Пропуска</h1><div class="grid">{% for pass in access_passes %}<article class="item"><h2>№ {{ pass.number }}</h2><p>Владелец: {{ pass.visitor.full_name }}</p><p>Действует до: {{ pass.expires_on|date:"d.m.Y" }}</p></article>{% empty %}<p>Пропуска ещё не выданы.</p>{% endfor %}</div>{% endblock %}

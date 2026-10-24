@@ -1,0 +1,7 @@
+:root { --ink: #14213d; --accent: #176b87; --surface: #fff; --bg: #f2f6f8; }
+* { box-sizing: border-box; } body { margin: 0; background: var(--bg); color: var(--ink); font-family: Arial, sans-serif; }
+.navigation { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem max(5vw, 1.5rem); background: var(--ink); }
+.brand, .nav-links a { color: #fff; text-decoration: none; } .brand { font-weight: 700; } .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.container { max-width: 1040px; margin: 0 auto; padding: 2rem 1.5rem; } .hero { padding: 2rem; background: var(--surface); border-radius: 12px; } .hero-image { float: right; max-width: 160px; margin-left: 1rem; } .eyebrow { color: var(--accent); font-weight: 700; }
+.cards, .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 1.5rem; }.card, .item { background: var(--surface); border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px #14213d16; }.card { color: var(--ink); text-decoration: none; display: grid; gap: .4rem; }.card strong { color: var(--accent); font-size: 2rem; }.item h2 { margin-top: 0; font-size: 1.2rem; }.item a, main > a { color: var(--accent); font-weight: 700; }.status { font-weight: 700; } dt { font-weight: 700; margin-top: 1rem; } dd { margin-left: 0; }
+@media (max-width: 600px) { .navigation { align-items: flex-start; flex-direction: column; } }

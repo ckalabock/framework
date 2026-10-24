@@ -1,16 +1,4 @@
+{% load static %}
 <!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Учёт посетителей</title>
-    <link rel="stylesheet" href="/static/app.css">
-</head>
-<body>
-<header><h1>Система учёта посетителей</h1>
-    {% if user.is_authenticated %}<span class="user-name">{{ user.username }}</span>
-    <form class="logout-form" action="{% url 'logout' %}" method="post">{% csrf_token %}<button class="button button-secondary" type="submit">Выйти</button></form>{% endif %}
-</header>
-<main>{% block content %}{% endblock %}</main>
-</body>
-</html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Учёт посетителей{% endblock %}</title><link rel="stylesheet" href="{% static 'webapp/css/style.css' %}"></head>
+<body>{% include "includes/navigation.html" %}<main class="container">{% block content %}{% endblock %}</main><script src="{% static 'webapp/js/app.js' %}"></script></body></html>
