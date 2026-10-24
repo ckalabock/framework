@@ -7,5 +7,5 @@
 <h2>Пропуска</h2>
 <ul>{% for pass in access_passes %}<li>№ {{ pass.number }} — действует до {{ pass.expires_on|date:"d.m.Y" }}</li>{% empty %}<li>Пропусков нет.</li>{% endfor %}</ul>
 <h2>Посещения</h2>
-<ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.purpose|default:"цель не указана" }}</a></li>{% empty %}<li>Посещений нет.</li>{% endfor %}</ul>
+<ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.purpose|default:"цель не указана"|upper }}</a></li>{% empty %}<li>Посещений нет.</li>{% endfor %}</ul>
 {% endblock %}
