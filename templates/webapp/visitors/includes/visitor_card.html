@@ -1,0 +1,5 @@
+<article class="item">
+  <h2>{{ visitor.full_name|default:"Без имени" }}</h2>
+  <p>Документ: {{ visitor.document|default:"не указан" }}</p>
+  <a class="btn btn-outline-primary" href="{% url 'webapp:visitor_detail' visitor.visitor_id %}">Открыть карточку</a>
+</article>

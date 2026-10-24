@@ -1,4 +1,5 @@
-﻿[
-  {"id": 1, "full_name": "Петрова Анна Сергеевна", "department": "Отдел кадров", "is_available": true},
-  {"id": 2, "full_name": "Сидоров Максим Олегович", "department": "IT-отдел", "is_available": false}
+[
+  {"id": 1, "full_name": "Иван Петров", "department": "Кадры", "is_available": true},
+  {"id": 2, "full_name": "Мария Соколова", "department": "Служба безопасности", "is_available": false},
+  {"id": 3, "full_name": "Алексей Волков", "department": "ИТ-отдел", "is_available": true}
 ]

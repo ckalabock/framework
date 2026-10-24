@@ -1,1 +1,6 @@
-{% extends "base.html" %}{% block title %}Сотрудники{% endblock %}{% block content %}<h1>Сотрудники</h1><div class="grid">{% for employee in employees %}<article class="item"><h2>{{ employee.full_name }}</h2><p>{{ employee.department }}</p><p class="status">{% if employee.is_available %}Доступен для приёма{% else %}Недоступен{% endif %}</p><a href="{% url 'webapp:employee_detail' employee.employee_id %}">Открыть карточку</a></article>{% empty %}<p>Сотрудники ещё не добавлены.</p>{% endfor %}</div>{% endblock %}
+{% extends "base.html" %}
+{% block title %}Сотрудники{% endblock %}
+{% block content %}
+<h1>Сотрудники</h1>
+<div class="grid">{% for employee in employees %}<article class="item"><h2>{{ employee.full_name }}</h2><p>{{ employee.department|default:"Подразделение не указано" }}</p><p class="status">{% if employee.is_available %}Доступен для приёма посетителей{% else %}Сейчас недоступен{% endif %}</p><a class="btn btn-outline-primary" href="{% url 'webapp:employee_detail' employee.employee_id %}">Открыть карточку</a></article>{% empty %}<p>Сотрудники ещё не добавлены.</p>{% endfor %}</div>
+{% endblock %}

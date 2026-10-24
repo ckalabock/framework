@@ -1,1 +1,11 @@
-{% extends "base.html" %}{% block title %}Посетители{% endblock %}{% block content %}<h1>Посетители</h1><div class="grid">{% for visitor in visitors %}<article class="item"><h2>{{ visitor.full_name|default:"Без имени" }}</h2><p>Документ: {{ visitor.document }}</p><a href="{% url 'webapp:visitor_detail' visitor.visitor_id %}">Открыть карточку</a></article>{% empty %}<p>Посетители ещё не добавлены.</p>{% endfor %}</div>{% endblock %}
+{% extends "base.html" %}
+{% block title %}Посетители{% endblock %}
+{% block content %}
+<h1>Посетители</h1>
+<p class="text-secondary">Всего записей: {{ visitors|length }}</p>
+<div class="grid">
+  {% for visitor in visitors %}
+    {% include "webapp/visitors/includes/visitor_card.html" with visitor=visitor %}
+  {% empty %}<p>Посетители ещё не добавлены.</p>{% endfor %}
+</div>
+{% endblock %}

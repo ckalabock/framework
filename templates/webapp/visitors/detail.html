@@ -1,1 +1,11 @@
-{% extends "base.html" %}{% block title %}{{ visitor.full_name }}{% endblock %}{% block content %}<a href="{% url 'webapp:visitor_list' %}">← К списку</a><h1>{{ visitor.full_name }}</h1><p>Документ: {{ visitor.document|default:"не указан" }}</p><h2>Пропуска</h2><ul>{% for pass in access_passes %}<li>{{ pass.number }} — до {{ pass.expires_on|date:"d.m.Y" }}</li>{% empty %}<li>Нет пропусков.</li>{% endfor %}</ul><h2>Посещения</h2><ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.purpose|upper }}</a></li>{% empty %}<li>Нет посещений.</li>{% endfor %}</ul>{% endblock %}
+{% extends "base.html" %}
+{% block title %}{{ visitor.full_name|default:"Посетитель" }}{% endblock %}
+{% block content %}
+<a href="{% url 'webapp:visitor_list' %}">← К списку</a>
+<h1 class="mt-3">{{ visitor.full_name|default:"Без имени" }}</h1>
+<p>Документ: {{ visitor.document|default:"не указан" }}</p>
+<h2>Пропуска</h2>
+<ul>{% for pass in access_passes %}<li>№ {{ pass.number }} — действует до {{ pass.expires_on|date:"d.m.Y" }}</li>{% empty %}<li>Пропусков нет.</li>{% endfor %}</ul>
+<h2>Посещения</h2>
+<ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.purpose|default:"цель не указана" }}</a></li>{% empty %}<li>Посещений нет.</li>{% endfor %}</ul>
+{% endblock %}

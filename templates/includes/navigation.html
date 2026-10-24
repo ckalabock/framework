@@ -1,1 +1,11 @@
-<nav class="navigation"><a class="brand" href="{% url 'webapp:index' %}">Учёт посетителей</a><div class="nav-links"><a href="{% url 'webapp:visitor_list' %}">Посетители</a><a href="{% url 'webapp:employee_list' %}">Сотрудники</a><a href="{% url 'webapp:pass_list' %}">Пропуска</a><a href="{% url 'webapp:visit_list' %}">Посещения</a></div></nav>
+<nav class="navbar navbar-expand-lg navbar-dark app-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'webapp:index' %}">Учёт посетителей</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="{% url 'webapp:visitor_list' %}">Посетители</a>
+      <a class="nav-link" href="{% url 'webapp:employee_list' %}">Сотрудники</a>
+      <a class="nav-link" href="{% url 'webapp:pass_list' %}">Пропуска</a>
+      <a class="nav-link" href="{% url 'webapp:visit_list' %}">Посещения</a>
+    </div>
+  </div>
+</nav>

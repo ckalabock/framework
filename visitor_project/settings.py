@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "development-only-change-in-production"
 DEBUG = True
-ALLOWED_HOSTS: list[str] = []
+ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "testserver"]
 
 # PZ5-PZ6 intentionally use the JSON storage and classes from practical work 3.
 # Database models, authentication and Django forms are not introduced yet.

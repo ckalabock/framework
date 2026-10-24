@@ -1,0 +1,1 @@
+<p class="status">{% if visit.status == "активно" %}<span class="badge text-bg-success">Активно</span>{% else %}<span class="badge text-bg-secondary">{{ visit.status|default:"Статус не указан"|capfirst }}</span>{% endif %}</p>

@@ -1,3 +1,5 @@
-﻿[
-  {"id": 1, "full_name": "Иванов Иван Иванович", "document": "4510 123456"}
+[
+  {"id": 1, "full_name": "Ким Чен Ын", "document": "AA123456"},
+  {"id": 2, "full_name": "Чимин Пак", "document": "BB456789"},
+  {"id": 3, "full_name": "Анна Смирнова", "document": "CC987654"}
 ]

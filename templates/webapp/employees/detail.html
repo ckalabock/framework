@@ -1,1 +1,8 @@
-{% extends "base.html" %}{% block title %}{{ employee.full_name }}{% endblock %}{% block content %}<a href="{% url 'webapp:employee_list' %}">← К списку</a><h1>{{ employee.full_name }}</h1><p>Отдел: {{ employee.department }}</p><p>{% if employee.is_available %}Сотрудник доступен для приёма посетителей.{% else %}Сотрудник сейчас недоступен.{% endif %}</p><h2>Посещения</h2><ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.visitor.full_name }}</a></li>{% empty %}<li>Назначенных посещений нет.</li>{% endfor %}</ul>{% endblock %}
+{% extends "base.html" %}
+{% block title %}{{ employee.full_name }}{% endblock %}
+{% block content %}
+<a href="{% url 'webapp:employee_list' %}">← К списку</a>
+<h1 class="mt-3">{{ employee.full_name }}</h1><p>Подразделение: {{ employee.department|default:"не указано" }}</p>
+<p>{% if employee.is_available %}<span class="badge text-bg-success">Доступен</span>{% else %}<span class="badge text-bg-secondary">Недоступен</span>{% endif %}</p>
+<h2>Назначенные посещения</h2><ul>{% for visit in visits %}<li><a href="{% url 'webapp:visit_detail' visit.visit_id %}">{{ visit.visit_date|date:"d.m.Y" }} — {{ visit.visitor.full_name }}</a></li>{% empty %}<li>Назначенных посещений нет.</li>{% endfor %}</ul>
+{% endblock %}
