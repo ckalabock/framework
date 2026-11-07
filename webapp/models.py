@@ -5,7 +5,7 @@ from django.db import models
 
 class Visitor(models.Model):
     full_name = models.CharField("полное имя", max_length=200)
-    document = models.CharField("документ", max_length=50, blank=True, default="")
+    document = models.CharField("документ", max_length=80, blank=True, default="")
 
     class Meta:
         ordering = ["full_name"]
@@ -66,3 +66,13 @@ class Visit(models.Model):
 
     def is_allowed(self):
         return self.status == self.Status.ACTIVE and self.access_pass.expires_on >= self.visit_date and self.employee.is_available
+
+
+# Соответствие учебному примеру Roomly из таблицы 7.3:
+# Room → Visitor (объект, который бронируется/учитывается),
+# User → Employee, Booking → Visit.
+# Эти имена можно показать преподавателю при объяснении адаптации примера
+# под предметную область учёта посетителей.
+Room = Visitor
+User = Employee
+Booking = Visit

@@ -1,14 +1,27 @@
 :root { --ink: #14213d; --accent: #176b87; --surface: #fff; --bg: #f2f6f8; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: Arial, sans-serif; }
-.app-navbar { background: var(--ink); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Arial, sans-serif; font-size: 16px; }
+.app-navbar { background: var(--ink); min-height: 64px; }
+.app-navbar .navbar-brand, .app-navbar .nav-link { color: #fff; }
+.app-navbar .nav-link:hover { color: #9fe5f5; }
+.container { max-width: 1040px; }
 .hero { background: var(--surface); }
 .hero-image { float: right; max-width: 160px; margin-left: 1rem; }
 .eyebrow { color: var(--accent); font-weight: 700; }
-.cards .card { color: var(--ink); text-decoration: none; border: 0; min-height: 110px; display: grid; align-content: center; gap: .4rem; box-shadow: 0 2px 8px #14213d16; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.cards .card { color: var(--ink); text-decoration: none; border: 0; min-height: 110px; padding: 1.25rem; display: grid; align-content: center; gap: .4rem; box-shadow: 0 2px 8px #14213d16; background: var(--surface); }
+.cards .card:hover { transform: translateY(-2px); box-shadow: 0 5px 14px #14213d25; }
 .card strong { color: var(--accent); font-size: 2rem; }
 .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.5rem; }
 .item { background: var(--surface); border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px #14213d16; }
 .item h2 { margin-top: 0; font-size: 1.2rem; }
+.btn { display: inline-block; padding: .5rem .9rem; border-radius: .375rem; text-decoration: none; cursor: pointer; }
+.btn-outline-primary { border: 1px solid #0d6efd; color: #0d6efd; background: #fff; }
+.btn-outline-primary:hover { color: #fff; background: #0d6efd; }
+.badge { display: inline-block; padding: .35em .65em; border-radius: .375rem; color: #fff; font-weight: 700; }
+.text-bg-success { background: #198754; }
+.text-bg-secondary { background: #6c757d; }
 .status { font-weight: 700; }
 dt { font-weight: 700; margin-top: 1rem; }
 dd { margin-left: 0; }
+@media (max-width: 600px) { .hero-image { max-width: 100px; } }
