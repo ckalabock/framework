@@ -23,6 +23,7 @@ class VisitorAdmin(admin.ModelAdmin):
     list_display = ("id", "full_name", "document")
     search_fields = ("full_name", "document")
     ordering = ("full_name",)
+    list_per_page = 20
     inlines = (AccessPassInline, VisitInline)
 
 
@@ -32,6 +33,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_filter = ("is_available", "department")
     search_fields = ("full_name", "department")
     ordering = ("full_name",)
+    list_per_page = 20
     inlines = (VisitInline,)
 
 
@@ -41,6 +43,7 @@ class AccessPassAdmin(admin.ModelAdmin):
     list_filter = ("expires_on",)
     search_fields = ("number", "visitor__full_name")
     list_select_related = ("visitor",)
+    list_per_page = 20
 
 
 @admin.register(Visit)
@@ -50,3 +53,4 @@ class VisitAdmin(admin.ModelAdmin):
     search_fields = ("visitor__full_name", "employee__full_name", "purpose", "access_pass__number")
     list_select_related = ("visitor", "employee", "access_pass")
     autocomplete_fields = ("visitor", "employee", "access_pass")
+    list_per_page = 20
