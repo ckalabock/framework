@@ -1,7 +1,9 @@
 """Views backed by Django ORM models (Практика №9)."""
 
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseNotAllowed
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import VisitFilterForm, VisitForm
 from .models import AccessPass, Employee, Visit, Visitor
 
 
@@ -44,9 +46,46 @@ def pass_list(request):
 
 def visit_list(request):
     visits = Visit.objects.select_related("visitor", "employee", "access_pass").all()
-    return render(request, "webapp/visits/list.html", {"visits": visits})
+    form = VisitFilterForm(request.GET or None)
+    if form.is_valid():
+        data = form.cleaned_data
+        if data["visit_date"]:
+            visits = visits.filter(visit_date=data["visit_date"])
+        if data["visitor"]:
+            visits = visits.filter(visitor=data["visitor"])
+        if data["employee"]:
+            visits = visits.filter(employee=data["employee"])
+        if data["status"]:
+            visits = visits.filter(status=data["status"])
+    return render(request, "webapp/visits/list.html", {"visits": visits, "form": form})
 
 
 def visit_detail(request, visit_id):
     visit = get_object_or_404(Visit.objects.select_related("visitor", "employee", "access_pass"), pk=visit_id)
     return render(request, "webapp/visits/detail.html", {"visit": visit})
+
+
+def visit_create(request):
+    form = VisitForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        visit = form.save()
+        return redirect("webapp:visit_detail", visit_id=visit.pk)
+    return render(request, "webapp/visits/form.html", {"form": form, "title": "Новое посещение"})
+
+
+def visit_edit(request, visit_id):
+    visit = get_object_or_404(Visit, pk=visit_id)
+    form = VisitForm(request.POST or None, instance=visit)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("webapp:visit_detail", visit_id=visit.pk)
+    return render(request, "webapp/visits/form.html", {"form": form, "title": "Редактирование посещения"})
+
+
+def visit_cancel(request, visit_id):
+    if request.method != "POST":
+        return HttpResponseNotAllowed(["POST"])
+    visit = get_object_or_404(Visit, pk=visit_id)
+    visit.status = Visit.Status.CANCELLED
+    visit.save(update_fields=["status"])
+    return redirect("webapp:visit_detail", visit_id=visit.pk)

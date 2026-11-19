@@ -1,3 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Посещения{% endblock %}
-{% block content %}<h1>Посещения</h1><p class="text-secondary">Всего записей: {{ visits|length }}</p><div class="grid">{% for visit in visits %}<article class="item"><h2>{{ visit.visit_date|date:"d.m.Y" }}</h2><p>{{ visit.visitor.full_name }} → {{ visit.employee.full_name }}</p><p>{{ visit.purpose|default:"Цель не указана" }}</p>{% include "webapp/visits/includes/visit_status.html" with visit=visit %}<a class="btn btn-outline-primary" href="{% url 'webapp:visit_detail' visit.pk %}">Подробнее</a></article>{% empty %}<p>Посещений ещё нет.</p>{% endfor %}</div>{% endblock %}
+{% block content %}
+<div class="page-heading"><div><h1>Посещения</h1><p class="text-secondary">Найдено записей: {{ visits|length }}</p></div><a class="btn btn-primary" href="{% url 'webapp:visit_create' %}">Добавить посещение</a></div>
+<form method="get" class="filter-form item">
+  <div class="form-grid">{% for field in form %}<div class="form-field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}</div>{% endfor %}</div>
+  <div class="form-actions"><button class="btn btn-primary" type="submit">Применить фильтры</button><a class="btn btn-secondary" href="{% url 'webapp:visit_list' %}">Сбросить</a></div>
+</form>
+<div class="grid">{% for visit in visits %}<article class="item"><h2>{{ visit.visit_date|date:"d.m.Y" }}</h2><p>{{ visit.visitor.full_name }} → {{ visit.employee.full_name }}</p><p>{{ visit.purpose|default:"Цель не указана" }}</p>{% include "webapp/visits/includes/visit_status.html" with visit=visit %}<a class="btn btn-outline-primary" href="{% url 'webapp:visit_detail' visit.pk %}">Подробнее</a></article>{% empty %}<p>Посещений по заданным условиям нет.</p>{% endfor %}</div>
+{% endblock %}
